@@ -6,9 +6,10 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" } // Transparetn when  doing alpha  blending
 		LOD 100
-
+        
+        // To do alpha blending: SrcColor*SrcAlpha + DstColor* OneMinusSrcAlpha
 		Pass
 		{
 			CGPROGRAM
@@ -48,7 +49,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
             
-            return float4(i.uv.r, 0.35, 0, 1);
+            return float4(i.uv.x, i.uv.y, 1, 1);
 				// sample the texture
 			//fixed4 col = tex2D(_MainTex, i.uv);
 				// apply fog
