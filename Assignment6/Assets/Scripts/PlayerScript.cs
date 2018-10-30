@@ -9,11 +9,10 @@ public class PlayerScript : MonoBehaviour {
     private float movementSpeed;
 
     private bool facingRight;
-    private Animator myAnimator;
+    public Animator myAnimator;
     private bool jump;
     [SerializeField]
     private float jumpForce;
-
 	// Use this for initialization
 	void Start () {
         facingRight = true;
