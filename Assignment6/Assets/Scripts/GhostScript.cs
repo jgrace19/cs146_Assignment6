@@ -9,6 +9,7 @@ public class GhostScript : MonoBehaviour {
     public Transform player;
     public GameObject ghost;
     public Camera camera;
+    public Flash flashScript;
 
     // Use this for initialization
     void Start () {
@@ -34,6 +35,7 @@ public class GhostScript : MonoBehaviour {
         Debug.Log("collision");
         if (col.transform == player) {
             Debug.Log("hit player");
+            flashScript.StartFlash();
         }
     }
 }

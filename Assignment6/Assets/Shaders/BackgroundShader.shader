@@ -43,15 +43,27 @@
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
+            
+            float4 frag(v2f_img i) : COLOR{
+             float4 c = tex2D(_MainTex, i.uv);
+ 
+             //float lum = c.r*.3 + c.g*.59 + c.b*.11;
+ 
+             float3 fl = float3(1, 1, 1);
+ 
+             float4 result = c;
+             result.rgb = lerp(c.rgb, fl, _flash);
+             return result;
+         }
 			
-			fixed4 frag (v2f i) : SV_Target
+			/*fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv);
+			/fixed4 col = tex2D(_MainTex, i.uv);
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
-			}
+			}*/
 			ENDCG
 		}
 	}
