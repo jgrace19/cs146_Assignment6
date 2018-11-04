@@ -10,26 +10,25 @@ public class PlayerScript : MonoBehaviour {
 
     private bool facingRight;
     public Animator myAnimator;
-    private bool jump;
+    private bool isJumping;
     [SerializeField]
-    private float jumpForce;
-	// Use this for initialization
-	void Start () {
+    
+    public float jumpForce;
+    
+    // Use this for initialization
+    void Start () {
         facingRight = true;
+        isJumping = false;
         myAnimator = GetComponent<Animator>();
-	}
+        	}
 	
 	// Update is called once per frame
-	void Update () {
-        HandleInput();
-	}
 
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
         HandleMovement(horizontal);
         Flip(horizontal);
-        ResetValues();
     }
 
     private void HandleMovement(float horizontal)
@@ -38,10 +37,17 @@ public class PlayerScript : MonoBehaviour {
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
 
-        if(jump)
+        if(Input.GetKeyDown("up") || Input.GetKeyDown("space"))
         {
-            girlRb.AddForce(new Vector2(0, jumpForce));
+            if (!isJumping) Jump();
         }
+
+        if (girlRb.velocity.y < 0)
+        {
+            Fall();
+        }
+
+
 
     }
 
@@ -56,16 +62,30 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    private void HandleInput()
+    private void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            jump = true;
-        }
+        isJumping = true;
+        myAnimator.SetTrigger("Jump Into Air");
+        //myAnimator.ResetTrigger("Land");
+        girlRb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
     }
 
-    private void ResetValues()
+    private void Fall()
     {
-        jump = false;
+        myAnimator.SetTrigger("Fall");
+    }
+
+    private void Land()
+    {
+        isJumping = false;
+        myAnimator.SetTrigger("Land");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            Land();
+        }
     }
 }
