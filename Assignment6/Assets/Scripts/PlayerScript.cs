@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour {
     public Animator myAnimator;
     private bool isJumping;
     private bool isGrounded;
-    public float fallMultiplier = 2.5f;
+    public float fallMultiplier = 1.05f;
     [SerializeField]
     
     public float jumpForce;
