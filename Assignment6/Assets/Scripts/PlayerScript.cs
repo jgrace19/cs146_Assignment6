@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
     public Rigidbody2D girlRb;
-
     [SerializeField]
     private float movementSpeed;
-
     private bool facingRight;
     public Animator myAnimator;
     private bool isJumping;
+    private bool isGrounded;
+    public float fallMultiplier = 2.5f;
     [SerializeField]
     
     public float jumpForce;
@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour {
     void Start () {
         facingRight = true;
         isJumping = false;
+        isGrounded = true;
         myAnimator = GetComponent<Animator>();
         	}
 	
@@ -44,6 +45,7 @@ public class PlayerScript : MonoBehaviour {
 
         if (girlRb.velocity.y < 0)
         {
+            girlRb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
             Fall();
         }
 
@@ -65,6 +67,7 @@ public class PlayerScript : MonoBehaviour {
     private void Jump()
     {
         isJumping = true;
+        isGrounded = false;
         myAnimator.SetTrigger("Jump Into Air");
         //myAnimator.ResetTrigger("Land");
         girlRb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
@@ -72,18 +75,19 @@ public class PlayerScript : MonoBehaviour {
 
     private void Fall()
     {
-        myAnimator.SetTrigger("Fall");
+        myAnimator.SetBool  ("isFalling",true);
     }
 
     private void Land()
     {
         isJumping = false;
+        isGrounded = true;
         myAnimator.SetTrigger("Land");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (isGrounded == false & collision.collider.tag == "Ground")
         {
             Land();
         }

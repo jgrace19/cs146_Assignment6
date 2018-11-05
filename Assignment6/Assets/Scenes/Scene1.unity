@@ -376,9 +376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   girlRb: {fileID: 335114026}
-  movementSpeed: 5
+  movementSpeed: 10
   myAnimator: {fileID: 335114023}
-  jumpForce: 30
+  fallMultiplier: 1.05
+  jumpForce: 15
 --- !u!60 &335114028
 PolygonCollider2D:
   m_ObjectHideFlags: 0
