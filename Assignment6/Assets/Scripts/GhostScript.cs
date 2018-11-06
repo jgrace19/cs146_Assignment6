@@ -35,7 +35,7 @@ public class GhostScript : MonoBehaviour {
         Debug.Log("collision");
         if (col.transform == player) {
             Debug.Log("hit player");
-            flashScript.StartFlash();
+          // flashScript.StartFlash();
         }
     }
 }
