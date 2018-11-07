@@ -137,5 +137,7 @@ public class PlayerScript : MonoBehaviour {
             myAnimator.SetBool("Climb", true);
             isGrounded = false;
         }
+
+        if (Input.GetKey(KeyCode.S) && isClimbing)         {             myAnimator.SetLayerWeight(1, 1);             myAnimator.SetLayerWeight(0, 0);             Vector3 climbVector = new Vector3(rope.transform.position.x, girlRb.transform.position.y - .3f);             girlRb.position = climbVector;               myAnimator.SetFloat("speed", Mathf.Abs(vertical));             //Physics2D.gravity = Vector2.zero;             myAnimator.SetBool("Climb", true);             isGrounded = false;         } 
     }
 }
