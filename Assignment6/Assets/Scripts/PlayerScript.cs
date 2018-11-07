@@ -97,7 +97,7 @@ public class PlayerScript : MonoBehaviour {
         isJumping = false;
         isClimbing = false;
         isGrounded = true;
-         myAnimator.SetTrigger("Land");
+        myAnimator.SetTrigger("Land");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -114,6 +114,12 @@ public class PlayerScript : MonoBehaviour {
             Vector3 ropePosition = new Vector3(collision.collider.transform.position.x, girlRb.transform.position.y);
             girlRb.position = ropePosition; 
         }
+        if (collision.collider.tag == "Ghost")
+        {
+            myAnimator.SetTrigger("Jump Into Air");
+            Debug.Log("Ghost");
+        }
+
     }
 
     private void HandleVMovement(float vertical)
