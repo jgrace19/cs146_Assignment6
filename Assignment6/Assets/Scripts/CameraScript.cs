@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
-    public Material EffectMaterial;
+    public Transform player;
+    public Vector3 offset;
 
-
-    private void OnRenderImage(RenderTexture source, RenderTexture destination)
+    private void Update()
     {
-        Debug.Log("rendered image");
-       // Graphics.Blit(source, destination, EffectMaterial);
+        transform.position = player.position + offset;
     }
 }
