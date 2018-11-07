@@ -12,8 +12,10 @@ public class GhostScript : MonoBehaviour {
     public Flash flashScript;
 
     private bool isEnabled = false;
+    private bool bouncing = false;
     private bool movingRight = true;
-    Vector3 newPos;
+    Vector3 newRightPos;
+    Vector3 newLeftPos;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +36,16 @@ public class GhostScript : MonoBehaviour {
     {
         if (isEnabled)
         {
-            if (ghost.transform.position.x > -6) {
+            if (playerInElevator()) { // bounce
+                if (!bouncing) {
+                    bouncing = true;
+                    float yPos = UnityEngine.Random.Range(-10.0f, 10.0f);
+                    newRightPos = new Vector3(0.3f, yPos, 0);
+                    newLeftPos = new Vector3(-9f, yPos, 0);
+                }
+                bounceAgainstElevator();
+            } else { //follow player
+                bouncing = false;
                 float speed = Time.deltaTime / 4;
                 transform.position = Vector3.Lerp(ghost.transform.position, player.position, speed);
             }
@@ -43,22 +54,28 @@ public class GhostScript : MonoBehaviour {
 
     private void bounceAgainstElevator()
     {
-        float speed = Time.deltaTime / 4;
+        float speed = Time.deltaTime;
         if (movingRight)  {
-            transform.position = Vector3.Lerp(ghost.transform.position, newPos, speed);
-            if  (transform.position == newPos) {
+            transform.position = Vector3.Lerp(ghost.transform.position, newRightPos, speed);
+            if  (transform.position.x >= newRightPos.x - 1) {
                 switchDirections();
             }
-            movingRight = false;
         } else {
-            movingRight = true;
+            transform.position = Vector3.Lerp(ghost.transform.position, newLeftPos, speed);
+            if (transform.position.x <= newLeftPos.x + 1)
+            {
+                switchDirections();
+            }
         }
+    }
+
+    bool playerInElevator() {
+        //  return player.transform.position.x > -20 && player.transform.position.x < -13;
+        return player.transform.position.x < -13;
     }
 
     void switchDirections() {
         movingRight = !movingRight;
-        float yPos = UnityEngine.Random.Range(-10.0f, 10.0f);
-         newPos = new Vector3(6.95f, yPos, 0);
     }
 
     void OnTriggerEnter2D(Collider2D col)
