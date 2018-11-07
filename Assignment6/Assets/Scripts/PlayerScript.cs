@@ -15,7 +15,10 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField]
     
     public float jumpForce;
-    
+    [SerializeField]
+    Collider2D rope;
+
+
     // Use this for initialization
     void Start () {
         facingRight = true;
@@ -29,6 +32,12 @@ public class PlayerScript : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if(isGrounded){
+            myAnimator.SetLayerWeight(0, 1);
+            myAnimator.SetLayerWeight(1, 0);
+        }
+
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         HandleHMovement(horizontal);
@@ -101,14 +110,22 @@ public class PlayerScript : MonoBehaviour {
         if (collision.collider.tag == "Rope")
         {
             isClimbing = true;
+            rope = collision.collider;
+            Vector3 ropePosition = new Vector3(collision.collider.transform.position.x, girlRb.transform.position.y);
+            girlRb.position = ropePosition; 
         }
     }
 
     private void HandleVMovement(float vertical)
     {
-        if (Input.GetKey(KeyCode.W) && isClimbing == true)
+        if (Input.GetKey(KeyCode.W) && isClimbing)
         {
-            girlRb.velocity = new Vector2(girlRb.velocity.x, vertical * movementSpeed);
+            myAnimator.SetLayerWeight(1, 1);
+            myAnimator.SetLayerWeight(0, 0);
+            Vector3 climbVector = new Vector3(rope.transform.position.x, girlRb.transform.position.y + .3f);
+            girlRb.position = climbVector;
+
+                
             myAnimator.SetFloat("speed", Mathf.Abs(vertical));
             //Physics2D.gravity = Vector2.zero;
             myAnimator.SetBool("Climb", true);
