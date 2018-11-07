@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour {
     private bool isGrounded;
     public float fallMultiplier = 1.05f;
     [SerializeField]
+    public float ropeoffset;
     
     public float jumpForce;
     [SerializeField]
@@ -111,8 +112,8 @@ public class PlayerScript : MonoBehaviour {
         {
             isClimbing = true;
             rope = collision.collider;
-            Vector3 ropePosition = new Vector3(collision.collider.transform.position.x, girlRb.transform.position.y);
-            girlRb.position = ropePosition; 
+            Vector3 ropePosition = new Vector3(collision.collider.transform.position.x + ropeoffset, girlRb.transform.position.y);
+            girlRb.position = ropePosition;
         }
         if (collision.collider.tag == "Ghost")
         {
@@ -124,11 +125,11 @@ public class PlayerScript : MonoBehaviour {
 
     private void HandleVMovement(float vertical)
     {
-        if (Input.GetKey(KeyCode.W) && isClimbing)
+        if (Input.GetKey(KeyCode.W) && isClimbing==true)
         {
             myAnimator.SetLayerWeight(1, 1);
             myAnimator.SetLayerWeight(0, 0);
-            Vector3 climbVector = new Vector3(rope.transform.position.x, girlRb.transform.position.y + .3f);
+            Vector3 climbVector = new Vector3(rope.transform.position.x + ropeoffset, girlRb.transform.position.y + .3f);
             girlRb.position = climbVector;
 
                 
@@ -138,6 +139,19 @@ public class PlayerScript : MonoBehaviour {
             isGrounded = false;
         }
 
-        if (Input.GetKey(KeyCode.S) && isClimbing)         {             myAnimator.SetLayerWeight(1, 1);             myAnimator.SetLayerWeight(0, 0);             Vector3 climbVector = new Vector3(rope.transform.position.x, girlRb.transform.position.y - .3f);             girlRb.position = climbVector;               myAnimator.SetFloat("speed", Mathf.Abs(vertical));             //Physics2D.gravity = Vector2.zero;             myAnimator.SetBool("Climb", true);             isGrounded = false;         } 
+        if (Input.GetKey(KeyCode.S) && isClimbing==true)
+        {
+            myAnimator.SetLayerWeight(1, 1);
+            myAnimator.SetLayerWeight(0, 0);
+            Vector3 climbVector = new Vector3(rope.transform.position.x + ropeoffset, girlRb.transform.position.y - .3f);
+            girlRb.position = climbVector;
+
+
+            myAnimator.SetFloat("speed", Mathf.Abs(vertical));
+            //Physics2D.gravity = Vector2.zero;
+            myAnimator.SetBool("Climb", true);
+            isGrounded = false;
+        }
+
     }
 }
