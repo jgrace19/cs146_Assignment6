@@ -11,6 +11,7 @@ public class Pickup : MonoBehaviour
     public Transform guide;
     bool carrying;
     public float range = 5;
+    public GameObject[] ghosts;
 
     // Use this for initialization
     void Start()
@@ -26,6 +27,7 @@ public class Pickup : MonoBehaviour
             {
                 pickup();
                 carrying = true;
+                enableGhosts();
             }
         }
         else if (carrying == true)
@@ -37,6 +39,16 @@ public class Pickup : MonoBehaviour
             }
         }
     }
+
+    void enableGhosts() {
+        ghosts = GameObject.FindGameObjectsWithTag("Ghost");
+        foreach (GameObject ghost in ghosts)
+        {
+            GhostScript script = ghost.GetComponent<GhostScript>();
+            script.StartMoving();
+        }
+    }
+
     void pickup()
     {
         item.GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -45,6 +57,7 @@ public class Pickup : MonoBehaviour
         item.transform.localPosition = new Vector2(item.transform.localPosition.x, item.transform.localPosition.y + 1);
         //item.transform.localPosition.Set(item.transform.localPosition.x, 3);
             }
+
     void drop()
     {
 
@@ -52,7 +65,6 @@ public class Pickup : MonoBehaviour
         item.GetComponent<Rigidbody2D>().isKinematic = false;
         item.transform.parent = null;
         item.transform.position.Set(guide.transform.position.x, guide.transform.position.y + 30, guide.transform.position.z);
-       // item.transform.position.Set(guide.transform.position.x, guide.transform.position.y + 30);
 
     }
 }

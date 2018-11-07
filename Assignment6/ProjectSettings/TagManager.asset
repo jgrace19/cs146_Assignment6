@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Rope
+  - Ghost
   layers:
   - Default
   - TransparentFX

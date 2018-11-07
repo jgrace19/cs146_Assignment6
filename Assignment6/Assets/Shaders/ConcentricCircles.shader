@@ -1,5 +1,4 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 Shader "Custom/ConcentricCircles" {
     Properties {
         _OrigineX ("PosX Origine", Range(0,1)) = 0.5

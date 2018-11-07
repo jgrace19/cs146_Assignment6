@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
     public Rigidbody2D girlRb;
     [SerializeField]
-    private float movementSpeed;
+    private float movementSpeed = 10;
     private bool facingRight;
     public Animator myAnimator;
     private bool isJumping;
