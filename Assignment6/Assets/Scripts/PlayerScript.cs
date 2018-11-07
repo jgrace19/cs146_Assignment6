@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour {
     private bool facingRight;
     public Animator myAnimator;
     private bool isJumping;
+    private bool isClimbing;
     private bool isGrounded;
     public float fallMultiplier = 1.05f;
     [SerializeField]
@@ -20,6 +21,7 @@ public class PlayerScript : MonoBehaviour {
         facingRight = true;
         isJumping = false;
         isGrounded = true;
+        isClimbing = false;
         myAnimator = GetComponent<Animator>();
         	}
 	
@@ -28,17 +30,20 @@ public class PlayerScript : MonoBehaviour {
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        HandleMovement(horizontal);
+        float vertical = Input.GetAxis("Vertical");
+        HandleHMovement(horizontal);
+        HandleVMovement(vertical);
         Flip(horizontal);
+        
     }
 
-    private void HandleMovement(float horizontal)
+    private void HandleHMovement(float horizontal)
     {
         girlRb.velocity = new Vector2(horizontal * movementSpeed, girlRb.velocity.y);
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
 
-        if(Input.GetKeyDown("up") || Input.GetKeyDown("space"))
+        if(Input.GetKeyDown("space"))
         {
             if (!isJumping) Jump();
         }
@@ -81,15 +86,33 @@ public class PlayerScript : MonoBehaviour {
     private void Land()
     {
         isJumping = false;
+        isClimbing = false;
         isGrounded = true;
-        myAnimator.SetTrigger("Land");
+         myAnimator.SetTrigger("Land");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.collider.tag);
         if (isGrounded == false & collision.collider.tag == "Ground")
         {
             Land();
+        }
+        if (collision.collider.tag == "Rope")
+        {
+            isClimbing = true;
+        }
+    }
+
+    private void HandleVMovement(float vertical)
+    {
+        if (Input.GetKey(KeyCode.W) && isClimbing == true)
+        {
+            girlRb.velocity = new Vector2(girlRb.velocity.x, vertical * movementSpeed);
+            myAnimator.SetFloat("speed", Mathf.Abs(vertical));
+            //Physics2D.gravity = Vector2.zero;
+            myAnimator.SetBool("Climb", true);
+            isGrounded = false;
         }
     }
 }
