@@ -89,7 +89,7 @@ public class GhostScript : MonoBehaviour
 
     private void followPlayer()
     {
-        float speed = Time.deltaTime / 4;
+        float speed = Time.deltaTime / 2;
         transform.position = Vector3.Lerp(ghost.transform.position, player.position, speed);
     }
 
