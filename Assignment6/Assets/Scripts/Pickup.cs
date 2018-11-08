@@ -1,6 +1,4 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
@@ -17,6 +15,7 @@ public class Pickup : MonoBehaviour
     void Start()
     {
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
+        getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
     }
     // Update is called once per frame
     void Update()
@@ -35,18 +34,39 @@ public class Pickup : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K))
             {
                 drop();
+                disableElevatorGhosts();
                 carrying = false;
             }
         }
     }
 
-    void enableGhosts() {
-        ghosts = GameObject.FindGameObjectsWithTag("Ghost");
+    void enableGhosts()
+    {
         foreach (GameObject ghost in ghosts)
         {
             GhostScript script = ghost.GetComponent<GhostScript>();
             script.StartMoving();
         }
+    }
+
+    void disableElevatorGhosts()
+    {
+        GameObject[] elevatorGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        foreach (GameObject ghost in elevatorGhosts)
+        {
+            GhostScript script = ghost.GetComponent<GhostScript>();
+            script.StopMoving();
+        }
+
+    }
+
+    void getAllGhosts()
+    {
+        GameObject[] regGhosts = GameObject.FindGameObjectsWithTag("Ghost");
+        GameObject[] elevatorGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        ghosts = new GameObject[regGhosts.Length + elevatorGhosts.Length];
+        Array.Copy(regGhosts, ghosts, regGhosts.Length);
+        Array.Copy(elevatorGhosts, 0, ghosts, regGhosts.Length, elevatorGhosts.Length);
     }
 
     void pickup()
@@ -56,7 +76,7 @@ public class Pickup : MonoBehaviour
         item.transform.parent = tempParent.transform;
         item.transform.localPosition = new Vector2(item.transform.localPosition.x, item.transform.localPosition.y + 1);
         //item.transform.localPosition.Set(item.transform.localPosition.x, 3);
-            }
+    }
 
     void drop()
     {
@@ -68,4 +88,3 @@ public class Pickup : MonoBehaviour
 
     }
 }
-
