@@ -18,12 +18,17 @@ public class GhostScript : MonoBehaviour
     private bool isElevatorGhost;
     Vector3 newRightPos;
     Vector3 newLeftPos;
+    Shader movingShader;
+    Shader stoppedShader;
+    Renderer rend;
 
     // Use this for initialization
     void Start()
     {
         isElevatorGhost = (ghost.tag == "ElevatorGhost");
-        Debug.Log("is elevator ghost: " + isElevatorGhost);
+        rend = GetComponent<Renderer>();
+        movingShader = Shader.Find("Custom/ConcentricCircles");
+        stoppedShader = Shader.Find("Custom/PausedConcentricCircles");
     }
 
     private void Awake()
@@ -35,11 +40,14 @@ public class GhostScript : MonoBehaviour
     public void StartMoving()
     {
         isEnabled = true;
+        rend.material.shader = movingShader;
     }
 
     public void StopMoving()
     {
         isEnabled = false;
+        rend.material.shader = stoppedShader;
+
     }
 
     // Update is called once per frame
