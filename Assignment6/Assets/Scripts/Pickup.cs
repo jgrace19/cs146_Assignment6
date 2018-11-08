@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-
+    public AudioSource source;
+    private bool playedmusiconce = false;
     public GameObject item;
     public GameObject tempParent;
     public Transform guide;
@@ -14,6 +15,7 @@ public class Pickup : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>();
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
         getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
     }
@@ -31,6 +33,12 @@ public class Pickup : MonoBehaviour
         }
         else if (carrying == true)
         {
+            if (!playedmusiconce)
+            {
+                source.Play();
+                playedmusiconce = true;
+            }
+            
             if (Input.GetKeyDown(KeyCode.K))
             {
                 drop();
