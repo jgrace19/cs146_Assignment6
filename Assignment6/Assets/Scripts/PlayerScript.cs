@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour {
     public Animator myAnimator;
     private bool isJumping;
     private bool isClimbing;
-    private bool isGrounded;
+    public bool isGrounded;
     public float fallMultiplier = 1.05f;
     [SerializeField]
     public float ropeoffset;
