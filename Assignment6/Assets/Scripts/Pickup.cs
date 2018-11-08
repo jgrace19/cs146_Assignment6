@@ -9,6 +9,7 @@ public class Pickup : MonoBehaviour
     public GameObject tempParent;
     public Transform guide;
     bool carrying;
+    public float thrust = 100;
     public float range = 5;
     public GameObject[] ghosts;
 
@@ -91,8 +92,13 @@ public class Pickup : MonoBehaviour
 
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
         item.GetComponent<Rigidbody2D>().isKinematic = false;
+        //item.GetComponent<Rigidbody2D>().AddForce(transform.forward * thrust,ForceMode2D.Impulse);
+        //item.transform.position = new Vector3(guide.transform.position.x + 10, guide.transform.position.y + 1, guide.transform.position.z);
         item.transform.parent = null;
-        item.transform.position.Set(guide.transform.position.x, guide.transform.position.y + 30, guide.transform.position.z);
+        item.transform.position.Set(guide.transform.position.x, guide.transform.position.y, guide.transform.position.z);
+       
 
     }
+
+
 }

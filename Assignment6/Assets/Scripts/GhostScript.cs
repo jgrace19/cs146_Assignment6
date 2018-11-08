@@ -31,12 +31,6 @@ public class GhostScript : MonoBehaviour
         stoppedShader = Shader.Find("Custom/PausedConcentricCircles");
     }
 
-    private void Awake()
-    {
-        var boxCollider = ghost.GetComponent<BoxCollider2D>();
-        boxCollider.isTrigger = true;
-    }
-
     public void StartMoving()
     {
         isEnabled = true;
@@ -124,14 +118,5 @@ public class GhostScript : MonoBehaviour
     {
         movingRight = !movingRight;
     }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        Debug.Log("collision");
-        if (col.transform == player)
-        {
-            Debug.Log("hit player");
-            // flashScript.StartFlash();
-        }
-    }
 }
+

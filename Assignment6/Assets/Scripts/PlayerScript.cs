@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
     public Rigidbody2D girlRb;
+    public GameObject clock;
     [SerializeField]
     private float movementSpeed = 10;
     private bool facingRight;
@@ -30,9 +31,13 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 
+    
+
+
     private void FixedUpdate()
     {
-        if(isGrounded){
+
+        if (isGrounded){
             myAnimator.SetLayerWeight(0, 1);
             myAnimator.SetLayerWeight(1, 0);
         }
@@ -48,6 +53,11 @@ public class PlayerScript : MonoBehaviour {
 
     private void HandleHMovement(float horizontal)
     {
+        if (girlRb.position.y < -30)
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
+
         girlRb.velocity = new Vector2(horizontal * movementSpeed, girlRb.velocity.y);
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
@@ -112,10 +122,11 @@ public class PlayerScript : MonoBehaviour {
             Vector3 ropePosition = new Vector3(collision.collider.transform.position.x + ropeoffset, girlRb.transform.position.y);
             girlRb.position = ropePosition;
         }
-        if (collision.collider.tag == "Ghost")
+        if (collision.collider.tag == "Ghost" || collision.collider.tag == "ElevatorGhost")
         {
-            myAnimator.SetTrigger("Jump Into Air");
-            Debug.Log("Ghost");
+            myAnimator.SetTrigger("Dead");
+            Destroy(clock);
+            FindObjectOfType<GameManager>().EndGame();
         }
 
     }
