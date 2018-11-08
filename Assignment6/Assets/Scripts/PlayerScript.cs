@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour {
     public float fallMultiplier = 1.05f;
     [SerializeField]
     public float ropeoffset;
-    
     public float jumpForce;
     [SerializeField]
     Collider2D rope;
@@ -53,7 +52,7 @@ public class PlayerScript : MonoBehaviour {
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
 
-        if(Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space"))
         {
             if (!isJumping) Jump();
         }
@@ -63,8 +62,6 @@ public class PlayerScript : MonoBehaviour {
             girlRb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1);
             Fall();
         }
-
-
 
     }
 
