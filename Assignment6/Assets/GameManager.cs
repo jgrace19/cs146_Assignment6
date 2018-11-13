@@ -6,11 +6,17 @@ public class GameManager : MonoBehaviour
 
     public float restartDelay = 1;
     public GameObject completeLevelUI;
+    public GameObject horrorImageUI;
+    public GameObject horrorImage2;
+    private int rInt;
 
     // Use this for initialization
-    //void Start () {
+    void Start () {
 
-    //}
+        //Random r = new Random();
+        rInt = Random.Range(0,11);
+
+    }
 
     // Update is called once per frame
     //void Update () {
@@ -30,6 +36,13 @@ public class GameManager : MonoBehaviour
         {
             gameHasEnded = true;
             Debug.Log("Game Over");
+            Debug.Log(rInt);
+            if (rInt > 7) {
+                horrorImage2.SetActive(true);
+            } else {
+                horrorImageUI.SetActive(true);
+            }
+
             Invoke("Restart", restartDelay);//invoke delays the launch of the Restart Method
         }
     }
