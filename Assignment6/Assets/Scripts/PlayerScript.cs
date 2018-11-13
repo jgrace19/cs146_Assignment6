@@ -16,8 +16,8 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField]
     public float ropeoffset;
     public float jumpForce;
-    [SerializeField]
-    Collider2D rope;
+    CircleCollider2D landingRopeRung;
+    private float CLIMB_SPEED = .2f;
 
 
     // Use this for initialization
@@ -58,12 +58,21 @@ public class PlayerScript : MonoBehaviour {
             FindObjectOfType<GameManager>().EndGame();
         }
 
-        girlRb.velocity = new Vector2(horizontal * movementSpeed, girlRb.velocity.y);
+        if (!isClimbing) {
+            girlRb.velocity = new Vector2(horizontal * movementSpeed, girlRb.velocity.y);
+        }
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
 
         if (Input.GetKeyDown("space"))
         {
+            //Jump off the rope 
+            if (isClimbing)
+            {
+                girlRb.gravityScale = 2;
+                isClimbing = false;
+                SetClimbingAnimationLayer(false);
+            }
             if (!isJumping) Jump();
         }
 
@@ -77,7 +86,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void Flip(float horizontal)
     {
-        if(horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+        if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
         {
             facingRight = !facingRight;
             Vector3 scale = transform.localScale;
@@ -110,17 +119,9 @@ public class PlayerScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.tag);
         if (isGrounded == false & collision.collider.tag == "Ground")
         {
             Land();
-        }
-        if (collision.collider.tag == "Rope")
-        {
-            isClimbing = true;
-            rope = collision.collider;
-            Vector3 ropePosition = new Vector3(collision.collider.transform.position.x + ropeoffset, girlRb.transform.position.y);
-            girlRb.position = ropePosition;
         }
         if (collision.collider.tag == "Ghost" || collision.collider.tag == "ElevatorGhost")
         {
@@ -131,35 +132,52 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Collider2D>().tag == "Rope")
+        {
+            if(!isClimbing){
+                girlRb.gravityScale = 0;
+                landingRopeRung = collision.GetComponent<CircleCollider2D>();
+                Vector3 ropePosition = new Vector3(collision.GetComponent<CircleCollider2D>().transform.position.x + ropeoffset, landingRopeRung.transform.position.y);
+                girlRb.position = ropePosition;
+                girlRb.velocity = Vector3.zero;
+                girlRb.angularVelocity = 0;
+                isClimbing = true;
+            }
+        }
+
+    }
+
     private void HandleVMovement(float vertical)
     {
         if (Input.GetKey(KeyCode.W) && isClimbing==true)
         {
-            myAnimator.SetLayerWeight(1, 1);
-            myAnimator.SetLayerWeight(0, 0);
-            Vector3 climbVector = new Vector3(rope.transform.position.x + ropeoffset, girlRb.transform.position.y + .3f);
-            girlRb.position = climbVector;
-
-                
-            myAnimator.SetFloat("speed", Mathf.Abs(vertical));
-            //Physics2D.gravity = Vector2.zero;
-            myAnimator.SetBool("Climb", true);
-            isGrounded = false;
+            Climb(CLIMB_SPEED, vertical);
         }
 
         if (Input.GetKey(KeyCode.S) && isClimbing==true)
         {
+            Climb(-CLIMB_SPEED, vertical);
+        }
+    }
+
+    private void SetClimbingAnimationLayer(bool climbing){
+        if(climbing){
             myAnimator.SetLayerWeight(1, 1);
             myAnimator.SetLayerWeight(0, 0);
-            Vector3 climbVector = new Vector3(rope.transform.position.x + ropeoffset, girlRb.transform.position.y - .3f);
-            girlRb.position = climbVector;
-
-
-            myAnimator.SetFloat("speed", Mathf.Abs(vertical));
-            //Physics2D.gravity = Vector2.zero;
-            myAnimator.SetBool("Climb", true);
-            isGrounded = false;
+        }else{
+            myAnimator.SetLayerWeight(1, 0);
+            myAnimator.SetLayerWeight(0, 1);
         }
+    }
 
+    private void Climb(float climbSpeed, float vertical){
+        SetClimbingAnimationLayer(true);
+        Vector3 climbVector = new Vector3(landingRopeRung.transform.position.x + ropeoffset, girlRb.transform.position.y + climbSpeed);
+        girlRb.position = climbVector;
+        myAnimator.SetFloat("speed", Mathf.Abs(vertical));
+        myAnimator.SetBool("Climb", true);
+        isGrounded = false;
     }
 }
