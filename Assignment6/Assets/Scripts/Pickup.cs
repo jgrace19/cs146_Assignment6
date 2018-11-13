@@ -19,6 +19,7 @@ public class Pickup : MonoBehaviour
         source = GetComponent<AudioSource>();
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
         getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
+        enableElevatorGhosts();
     }
     // Update is called once per frame
     void Update()
@@ -43,9 +44,18 @@ public class Pickup : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K))
             {
                 drop();
-                disableElevatorGhosts();
+                disableGhosts();
                 carrying = false;
             }
+        }
+    }
+
+    void enableElevatorGhosts() {
+        GameObject[] elevatorGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        foreach (GameObject ghost in elevatorGhosts)
+        {
+            GhostScript script = ghost.GetComponent<GhostScript>();
+            script.StartMoving();
         }
     }
 
@@ -58,10 +68,9 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    void disableElevatorGhosts()
+    void disableGhosts()
     {
-        GameObject[] elevatorGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
-        foreach (GameObject ghost in elevatorGhosts)
+        foreach (GameObject ghost in ghosts)
         {
             GhostScript script = ghost.GetComponent<GhostScript>();
             script.StopMoving();
@@ -84,20 +93,16 @@ public class Pickup : MonoBehaviour
         item.GetComponent<Rigidbody2D>().isKinematic = true;
         item.transform.parent = tempParent.transform;
         item.transform.localPosition = new Vector2(item.transform.localPosition.x, item.transform.localPosition.y + 1);
-        //item.transform.localPosition.Set(item.transform.localPosition.x, 3);
     }
 
     void drop()
     {
-
-        item.GetComponent<Rigidbody2D>().gravityScale = 1;
         item.GetComponent<Rigidbody2D>().isKinematic = false;
-        //item.GetComponent<Rigidbody2D>().AddForce(transform.forward * thrust,ForceMode2D.Impulse);
-        //item.transform.position = new Vector3(guide.transform.position.x + 10, guide.transform.position.y + 1, guide.transform.position.z);
+        item.GetComponent<Rigidbody2D>().gravityScale = 1;
         item.transform.parent = null;
-        item.transform.position.Set(guide.transform.position.x, guide.transform.position.y, guide.transform.position.z);
-       
-
+        //item.transform.position.Set(guide.transform.position.x, guide.transform.position.y, guide.transform.position.z);
+        //item.transform.localPosition = new Vector2(0, 0);
+        item.GetComponent<Rigidbody2D>().AddForce(new Vector2(-.5f, .5f));
     }
 
 

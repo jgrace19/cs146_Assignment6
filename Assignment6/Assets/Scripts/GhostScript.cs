@@ -34,7 +34,10 @@ public class GhostScript : MonoBehaviour
     public void StartMoving()
     {
         isEnabled = true;
-        rend.material.shader = movingShader;
+        if (movingShader != null) {
+            rend.material.shader = movingShader;
+
+        }
     }
 
     public void StopMoving()
