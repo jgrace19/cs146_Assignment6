@@ -180,4 +180,8 @@ public class PlayerScript : MonoBehaviour {
         myAnimator.SetBool("Climb", true);
         isGrounded = false;
     }
+
+    public bool getIsClimbing(){
+        return isClimbing;
+    }
 }
