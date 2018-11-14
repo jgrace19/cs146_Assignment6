@@ -102,7 +102,8 @@ public class Pickup : MonoBehaviour
         item.transform.parent = null;
         //item.transform.position.Set(guide.transform.position.x, guide.transform.position.y, guide.transform.position.z);
         //item.transform.localPosition = new Vector2(0, 0);
-        item.GetComponent<Rigidbody2D>().AddForce(new Vector2(-.5f, .5f));
+        float xForce = guide.GetComponent<PlayerScript>().IsFacingRight() ? 300 : -300;
+        item.GetComponent<Rigidbody2D>().AddForce(new Vector2(xForce, 300f));
     }
 
 

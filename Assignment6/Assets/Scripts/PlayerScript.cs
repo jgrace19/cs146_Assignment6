@@ -31,7 +31,10 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 
-    
+
+    public bool IsFacingRight() {
+        return this.facingRight;
+    }
 
 
     private void FixedUpdate()
