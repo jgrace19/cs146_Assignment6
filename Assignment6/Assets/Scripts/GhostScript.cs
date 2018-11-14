@@ -68,7 +68,6 @@ public class GhostScript : MonoBehaviour
     {
         if (isElevatorGhost)
         {
-            Debug.Log("elevator ghost");
             followPlayer();
         }
         else
@@ -86,8 +85,12 @@ public class GhostScript : MonoBehaviour
 
     private void followPlayer()
     {
+        Vector3 xPos = player.position;
+        if (isElevatorGhost && player.position.x < -12) { // we want the ghost to stay in the right side of the elevator
+            xPos = new Vector3(-12f, player.position.y, player.position.z);
+        }
         float speed = Time.deltaTime / 2;
-        transform.position = Vector3.Lerp(ghost.transform.position, player.position, speed);
+        transform.position = Vector3.Lerp(ghost.transform.position, xPos, speed);
     }
 
     private void bounceAgainstElevator()
