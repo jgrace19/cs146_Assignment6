@@ -6,9 +6,11 @@ public class Pickup : MonoBehaviour
     public AudioSource source;
     private bool playedmusiconce = false;
     public GameObject item;
+    public GameObject cameralens;
     public GameObject tempParent;
     public Transform guide;
     bool carrying;
+    public bool thrown = false;
     public float thrust = 100;
     public float range = 5;
     public GameObject[] ghosts;
@@ -17,6 +19,7 @@ public class Pickup : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
+        cameralens = GameObject.Find("Main Camera");
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
         getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
         enableElevatorGhosts();
@@ -24,26 +27,25 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(thrown);
         if (carrying == false)
         {
             if (Input.GetKeyDown(KeyCode.K) && ((guide.transform.position - transform.position).sqrMagnitude < range * range))
             {
                 pickup();
+                source.volume = 0;
+                cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = false;
                 carrying = true;
                 enableGhosts();
             }
         }
         else if (carrying == true)
-        {
-            if (!playedmusiconce)
-            {
-                source.Play();
-                playedmusiconce = true;
-            }
-            
+        {           
             if (Input.GetKeyDown(KeyCode.K))
             {
                 drop();
+                source.volume = 1;
+                cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
                 disableGhosts();
                 carrying = false;
             }
@@ -93,6 +95,7 @@ public class Pickup : MonoBehaviour
         item.GetComponent<Rigidbody2D>().isKinematic = true;
         item.transform.parent = tempParent.transform;
         item.transform.localPosition = new Vector2(item.transform.localPosition.x, item.transform.localPosition.y + 1);
+        thrown = false;
     }
 
     void drop()
@@ -104,6 +107,7 @@ public class Pickup : MonoBehaviour
         //item.transform.localPosition = new Vector2(0, 0);
         float xForce = guide.GetComponent<PlayerScript>().IsFacingRight() ? 300 : -300;
         item.GetComponent<Rigidbody2D>().AddForce(new Vector2(xForce, 300f));
+        thrown = true;
     }
 
 
