@@ -18,19 +18,6 @@
             
             float _Shininess; 
             
-			//struct appdata
-			//{
-			//	float4 vertex : POSITION;
-			//	float2 uv : TEXCOORD0;
-			//};
-
-			//struct v2f
-			//{
-			//	float2 uv : TEXCOORD0;
-			//	UNITY_FOG_COORDS(1)
-			//	float4 vertex : SV_POSITION;
-			//};
-            
             half4 LightingSimpleSpecular(SurfaceOutput s, half3 lightDir, half3 viewDir, half atten) {
                 half3 h = normalize (lightDir + viewDir);
                 half diff = max(0, dot(s.Normal, lightDir));
@@ -58,26 +45,6 @@
                 o.Emission = _RimColor.rgb + pow(rim, _RimPower);
                 o.Alpha = c.a + rim;
             }
-			//v2f vert (appdata v)
-			//{
-			//	v2f o;
-			//	o.vertex = UnityObjectToClipPos(v.vertex);
-			//	//o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-   //             o.uv = v.uv;
-			//	UNITY_TRANSFER_FOG(o,o.vertex);
-			//	return o;
-			//}
-			
-			//fixed4 frag (v2f i) : SV_Target
-			//{
-            
-   //         return float4(i.uv.x, i.uv.y, 1, 1);
-			//	// sample the texture
-			////fixed4 col = tex2D(_MainTex, i.uv);
-			//	// apply fog
-			////UNITY_APPLY_FOG(i.fogCoord, col);
-			//	//return col; 
-			//}
 			ENDCG
 		}
         Fallback "Diffuse"
