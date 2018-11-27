@@ -110,5 +110,12 @@ public class Pickup : MonoBehaviour
         thrown = true;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform == guide) {
+            Physics2D.IgnoreCollision(guide.GetComponent<Collider2D>(), item.GetComponent<Collider2D>());
+        }
+    }
+
 
 }
