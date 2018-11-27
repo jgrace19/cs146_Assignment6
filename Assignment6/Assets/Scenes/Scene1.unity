@@ -7166,6 +7166,11 @@ Prefab:
       propertyPath: m_Name
       value: cute_clock (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 50792276937063220, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
   m_IsPrefabAsset: 0
@@ -9420,7 +9425,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840949327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.747868, y: 36.12062, z: -38.660583}
+  m_LocalPosition: {x: -43.2, y: 36.12062, z: -38.660583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 782672182}
