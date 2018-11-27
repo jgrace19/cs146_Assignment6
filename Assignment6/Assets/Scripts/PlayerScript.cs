@@ -74,15 +74,9 @@ public class PlayerScript : MonoBehaviour {
             //Jump off the rope 
             if (isClimbing)
             {
-                girlRb.gravityScale = 2;
-                isClimbing = false;
-                SetClimbingAnimationLayer(false);
-                Debug.Log("stop climbing");
-                Debug.Log("jumping: " + isJumping);
                 JumpOffRope();
             }
             if (!isJumping) {
-                Debug.Log("jump");
                 Jump();
             }
         }
@@ -117,6 +111,9 @@ public class PlayerScript : MonoBehaviour {
 
     private void JumpOffRope() {
         Debug.Log("jump off rope");
+        girlRb.gravityScale = 2;
+        isClimbing = false;
+        SetClimbingAnimationLayer(false);
         isJumping = true;
         isGrounded = false;
         isFalling = true;
@@ -174,9 +171,7 @@ public class PlayerScript : MonoBehaviour {
                 isClimbing = true;
             }
         } else if (collision.GetComponent<Collider2D>().tag == "EndClimb") {
-            Debug.Log("hit end climb");
-            isClimbing = false;
-            isFalling = true;
+            JumpOffRope();
         }
     }
 
