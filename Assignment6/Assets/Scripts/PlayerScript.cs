@@ -77,8 +77,14 @@ public class PlayerScript : MonoBehaviour {
                 girlRb.gravityScale = 2;
                 isClimbing = false;
                 SetClimbingAnimationLayer(false);
+                Debug.Log("stop climbing");
+                Debug.Log("jumping: " + isJumping);
+                JumpOffRope();
             }
-            if (!isJumping) Jump();
+            if (!isJumping) {
+                Debug.Log("jump");
+                Jump();
+            }
         }
 
         if (girlRb.velocity.y < 0)
@@ -107,6 +113,21 @@ public class PlayerScript : MonoBehaviour {
         myAnimator.SetTrigger("Jump Into Air");
         //myAnimator.ResetTrigger("Land");
         girlRb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+    }
+
+    private void JumpOffRope() {
+        Debug.Log("jump off rope");
+        isJumping = true;
+        isGrounded = false;
+        isFalling = true;
+        myAnimator.SetTrigger("Jump Into Air");
+        Vector2 force;
+        if (facingRight) {
+            force = new Vector2(50, 0);
+        } else {
+            force = new Vector2(-50, 0);
+        }
+        girlRb.AddForce(force, ForceMode2D.Impulse);
     }
 
     private void Fall()
@@ -152,8 +173,11 @@ public class PlayerScript : MonoBehaviour {
                 girlRb.angularVelocity = 0;
                 isClimbing = true;
             }
+        } else if (collision.GetComponent<Collider2D>().tag == "EndClimb") {
+            Debug.Log("hit end climb");
+            isClimbing = false;
+            isFalling = true;
         }
-
     }
 
     private void HandleVMovement(float vertical)

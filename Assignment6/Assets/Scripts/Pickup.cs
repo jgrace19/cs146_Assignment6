@@ -27,7 +27,6 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(thrown);
         if (carrying == false)
         {
             if (Input.GetKeyDown(KeyCode.K) && ((guide.transform.position - transform.position).sqrMagnitude < range * range))

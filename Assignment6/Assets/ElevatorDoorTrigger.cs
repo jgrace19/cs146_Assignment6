@@ -31,7 +31,6 @@ public class ElevatorDoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Triggered");
         myAnimator.SetTrigger("DoorClose");
         source.Play();
     }
