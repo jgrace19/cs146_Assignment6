@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour {
     private bool isJumping;
     private bool isClimbing;
     public bool isGrounded;
+    private bool isFalling;
     public float fallMultiplier = 1.05f;
     [SerializeField]
     public float ropeoffset;
@@ -26,6 +27,7 @@ public class PlayerScript : MonoBehaviour {
         isJumping = false;
         isGrounded = true;
         isClimbing = false;
+        isFalling = false;
         myAnimator = GetComponent<Animator>();
         	}
 	
@@ -110,6 +112,7 @@ public class PlayerScript : MonoBehaviour {
     private void Fall()
     {
         myAnimator.SetBool  ("isFalling",true);
+        isFalling = true;
     }
 
     private void Land()
@@ -117,6 +120,7 @@ public class PlayerScript : MonoBehaviour {
         isJumping = false;
         isClimbing = false;
         isGrounded = true;
+        isFalling = false;
         myAnimator.SetTrigger("Land");
     }
 
@@ -139,7 +143,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if (collision.GetComponent<Collider2D>().tag == "Rope")
         {
-            if(!isClimbing){
+            if(!isClimbing && !isFalling){
                 girlRb.gravityScale = 0;
                 landingRopeRung = collision.GetComponent<CircleCollider2D>();
                 Vector3 ropePosition = new Vector3(collision.GetComponent<CircleCollider2D>().transform.position.x + ropeoffset, landingRopeRung.transform.position.y);
@@ -182,6 +186,7 @@ public class PlayerScript : MonoBehaviour {
         myAnimator.SetFloat("speed", Mathf.Abs(vertical));
         myAnimator.SetBool("Climb", true);
         isGrounded = false;
+        isFalling = false;
     }
 
     public bool getIsClimbing(){
