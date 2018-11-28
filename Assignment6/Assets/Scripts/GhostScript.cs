@@ -62,7 +62,18 @@ public class GhostScript : MonoBehaviour
                 followPlayer();
             }
         }
+        Flicker();
     }
+
+    void Flicker(){
+        SpriteRenderer ghostRenderer = ghost.GetComponent<SpriteRenderer>();
+        if (UnityEngine.Random.value < 0.80f){
+            ghostRenderer.enabled = false;
+        }else{
+            ghostRenderer.enabled = true;
+        }
+    }
+
 
     void ghostPlayerInElevator()
     {
