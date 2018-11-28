@@ -15,10 +15,12 @@ public class Pickup : MonoBehaviour
     public float range = 5;
     public GameObject[] ghosts;
     float timeLeft;
+    Vector3 originalPosition;
 
     // Use this for initialization
     void Start()
     {
+        originalPosition = item.transform.position;
         source = GetComponent<AudioSource>();
         cameralens = GameObject.Find("Main Camera");
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -47,7 +49,15 @@ public class Pickup : MonoBehaviour
                 resumeTime();
                 carrying = false;
             }
+            if (timeLeft < 0) {
+                ranOutOfTime();
+            }
         }
+    }
+
+    void ranOutOfTime() {
+        timeLeft = 10.0f;
+        item.transform.position = originalPosition;
     }
 
     void pauseTime() {
