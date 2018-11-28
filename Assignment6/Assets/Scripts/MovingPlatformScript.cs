@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingPlatformScript : MonoBehaviour {
     private int RIGHT = 1;
     private int LEFT = -1;
-    private float moveSpeed = .4f;
+    private float moveSpeed = .1f;
 
     [SerializeField] 
     private float XMax;
@@ -25,7 +25,7 @@ public class MovingPlatformScript : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(platformMoving){
             movePlatform();
@@ -47,6 +47,10 @@ public class MovingPlatformScript : MonoBehaviour {
 
     void setPlatformMoving(bool moving){
         platformMoving = moving;
+    }
+
+    public int getDirection(){
+        return direction;
     }
 
 }

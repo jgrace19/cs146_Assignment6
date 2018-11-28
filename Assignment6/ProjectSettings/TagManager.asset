@@ -9,6 +9,7 @@ TagManager:
   - Ghost
   - ElevatorGhost
   - EndClimb
+  - movingPlatform
   layers:
   - Default
   - TransparentFX
