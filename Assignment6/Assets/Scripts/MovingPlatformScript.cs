@@ -45,7 +45,7 @@ public class MovingPlatformScript : MonoBehaviour {
         platform.position = new Vector2(platform.position.x + moveSpeed * direction, platform.position.y);
     }
 
-    void setPlatformMoving(bool moving){
+    public void setPlatformMoving(bool moving){
         platformMoving = moving;
     }
 

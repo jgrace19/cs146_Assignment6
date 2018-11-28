@@ -32,10 +32,8 @@ public class Pickup : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K) && ((guide.transform.position - transform.position).sqrMagnitude < range * range))
             {
                 pickup();
-                source.volume = 0;
-                cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = false;
+                pauseTime();
                 carrying = true;
-                enableGhosts();
             }
         }
         else if (carrying == true)
@@ -43,12 +41,33 @@ public class Pickup : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K))
             {
                 drop();
-                source.volume = 1;
-                cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
-                disableGhosts();
+                resumeTime();
                 carrying = false;
             }
         }
+    }
+
+    void pauseTime() {
+        source.volume = 1;
+        cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
+        GameObject[] platforms;
+        platforms = GameObject.FindGameObjectsWithTag("MovingPlatforms");
+        foreach (GameObject platform in platforms) {
+            platform.GetComponent<MovingPlatformScript>().setPlatformMoving(false);
+        }
+        disableGhosts();
+    }
+
+    void resumeTime() {
+        source.volume = 0;
+        cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = false;
+        GameObject[] platforms;
+        platforms = GameObject.FindGameObjectsWithTag("MovingPlatforms");
+        foreach (GameObject platform in platforms)
+        {
+            platform.GetComponent<MovingPlatformScript>().setPlatformMoving(true);
+        }
+        enableGhosts();
     }
 
     void enableElevatorGhosts() {
