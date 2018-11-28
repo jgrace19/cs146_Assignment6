@@ -14,6 +14,7 @@ public class Pickup : MonoBehaviour
     public float thrust = 100;
     public float range = 5;
     public GameObject[] ghosts;
+    float timeLeft;
 
     // Use this for initialization
     void Start()
@@ -23,6 +24,7 @@ public class Pickup : MonoBehaviour
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
         getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
         enableElevatorGhosts();
+        timeLeft = 10.0f;
     }
     // Update is called once per frame
     void Update()
@@ -37,8 +39,9 @@ public class Pickup : MonoBehaviour
             }
         }
         else if (carrying == true)
-        {           
-            if (Input.GetKeyDown(KeyCode.K))
+        {
+            timeLeft -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.K) || timeLeft < 0)
             {
                 drop();
                 resumeTime();
