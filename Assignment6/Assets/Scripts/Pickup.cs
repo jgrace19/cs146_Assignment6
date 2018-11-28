@@ -14,15 +14,19 @@ public class Pickup : MonoBehaviour
     public float thrust = 100;
     public float range = 5;
     public GameObject[] ghosts;
+    float timeLeft;
+    Vector3 originalPosition;
 
     // Use this for initialization
     void Start()
     {
+        originalPosition = item.transform.position;
         source = GetComponent<AudioSource>();
         cameralens = GameObject.Find("Main Camera");
         item.GetComponent<Rigidbody2D>().gravityScale = 1;
         getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
         enableElevatorGhosts();
+        timeLeft = 10.0f;
     }
     // Update is called once per frame
     void Update()
@@ -32,23 +36,51 @@ public class Pickup : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K) && ((guide.transform.position - transform.position).sqrMagnitude < range * range))
             {
                 pickup();
-                source.volume = 0;
-                cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = false;
+                pauseTime();
                 carrying = true;
-                enableGhosts();
             }
         }
         else if (carrying == true)
-        {           
-            if (Input.GetKeyDown(KeyCode.K))
+        {
+            timeLeft -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.K) || timeLeft < 0)
             {
                 drop();
-                source.volume = 1;
-                cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
-                disableGhosts();
+                resumeTime();
                 carrying = false;
             }
+            if (timeLeft < 0) {
+                ranOutOfTime();
+            }
         }
+    }
+
+    void ranOutOfTime() {
+        timeLeft = 10.0f;
+        item.transform.position = originalPosition;
+    }
+
+    void pauseTime() {
+        source.volume = 1;
+        cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
+        GameObject[] platforms;
+        platforms = GameObject.FindGameObjectsWithTag("MovingPlatforms");
+        foreach (GameObject platform in platforms) {
+            platform.GetComponent<MovingPlatformScript>().setPlatformMoving(false);
+        }
+        disableGhosts();
+    }
+
+    void resumeTime() {
+        source.volume = 0;
+        cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = false;
+        GameObject[] platforms;
+        platforms = GameObject.FindGameObjectsWithTag("MovingPlatforms");
+        foreach (GameObject platform in platforms)
+        {
+            platform.GetComponent<MovingPlatformScript>().setPlatformMoving(true);
+        }
+        enableGhosts();
     }
 
     void enableElevatorGhosts() {

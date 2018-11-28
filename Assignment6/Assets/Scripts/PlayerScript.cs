@@ -193,6 +193,7 @@ public class PlayerScript : MonoBehaviour {
                 isClimbing = true;
             }
         } else if (collision.GetComponent<Collider2D>().tag == "EndClimb") {
+
             JumpOffRope();
         }
 
