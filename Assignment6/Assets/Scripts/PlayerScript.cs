@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
+    public bool isLockedforAnimations = false;
     public Rigidbody2D girlRb;
     public GameObject clock;
     [SerializeField]
@@ -43,19 +44,22 @@ public class PlayerScript : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (!isLockedforAnimations)
+        {
 
-        if (isGrounded){
-            myAnimator.SetLayerWeight(0, 1);
-            myAnimator.SetLayerWeight(1, 0);
+            if (isGrounded)
+            {
+                myAnimator.SetLayerWeight(0, 1);
+                myAnimator.SetLayerWeight(1, 0);
+            }
+
+
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            HandleHMovement(horizontal);
+            HandleVMovement(vertical);
+            Flip(horizontal);
         }
-
-
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        HandleHMovement(horizontal);
-        HandleVMovement(vertical);
-        Flip(horizontal);
-        
     }
 
     private void HandleHMovement(float horizontal)
