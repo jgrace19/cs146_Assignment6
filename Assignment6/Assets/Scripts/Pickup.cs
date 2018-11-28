@@ -43,6 +43,8 @@ public class Pickup : MonoBehaviour
         else if (carrying == true)
         {
             timeLeft -= Time.deltaTime;
+            Color lerpedColor = Color.Lerp(Color.white, Color.clear, 1-(.1f*timeLeft));
+            item.GetComponent<SpriteRenderer>().color = lerpedColor;
             if (Input.GetKeyDown(KeyCode.K) || timeLeft < 0)
             {
                 drop();
