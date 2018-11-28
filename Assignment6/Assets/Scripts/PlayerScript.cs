@@ -19,7 +19,9 @@ public class PlayerScript : MonoBehaviour {
     public float jumpForce;
     CircleCollider2D landingRopeRung;
     private float CLIMB_SPEED = .2f;
-
+    private float platformSpeed = .1f;
+    private bool onMovingPlatform = false;
+    private Collider2D movingPlatform;
 
     // Use this for initialization
     void Start () {
@@ -58,12 +60,15 @@ public class PlayerScript : MonoBehaviour {
 
     private void HandleHMovement(float horizontal)
     {
+        Debug.Log(onMovingPlatform);
+
         if (girlRb.position.y < -30)
         {
             FindObjectOfType<GameManager>().EndGame();
         }
 
-        if (!isClimbing) {
+        if (!isClimbing)
+        {
             girlRb.velocity = new Vector2(horizontal * movementSpeed, girlRb.velocity.y);
         }
 
@@ -76,7 +81,8 @@ public class PlayerScript : MonoBehaviour {
             {
                 JumpOffRope();
             }
-            if (!isJumping) {
+            if (!isJumping)
+            {
                 Jump();
             }
         }
@@ -87,9 +93,17 @@ public class PlayerScript : MonoBehaviour {
             Fall();
         }
 
+        if (onMovingPlatform)
+        {
+            MovingPlatformScript movingPlatformScript = movingPlatform.GetComponent<MovingPlatformScript>();
+            int direction = movingPlatformScript.getDirection();
+
+            Vector3 girlMovingPlatformPos = new Vector3(girlRb.transform.position.x + (platformSpeed * direction), girlRb.transform.position.y);
+            girlRb.position = girlMovingPlatformPos;
+        }
     }
 
-    private void Flip(float horizontal)
+        private void Flip(float horizontal)
     {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
         {
@@ -102,6 +116,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void Jump()
     {
+        onMovingPlatform = false;
         isJumping = true;
         isGrounded = false;
         myAnimator.SetTrigger("Jump Into Air");
@@ -110,7 +125,6 @@ public class PlayerScript : MonoBehaviour {
     }
 
     private void JumpOffRope() {
-        Debug.Log("jump off rope");
         girlRb.gravityScale = 2;
         isClimbing = false;
         SetClimbingAnimationLayer(false);
@@ -144,7 +158,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isGrounded == false & collision.collider.tag == "Ground")
+        if (isGrounded == false & collision.collider.tag == "Ground" || collision.collider.tag == "movingPlatform")
         {
             Land();
         }
@@ -153,6 +167,14 @@ public class PlayerScript : MonoBehaviour {
             myAnimator.SetTrigger("Dead");
             Destroy(clock);
             FindObjectOfType<GameManager>().EndGame();
+        }
+
+        if(collision.collider.tag == "movingPlatform"){
+            onMovingPlatform = true;
+            movingPlatform = collision.collider;
+        }else{
+            onMovingPlatform = false;
+            movingPlatform = null;
         }
 
     }
@@ -174,6 +196,7 @@ public class PlayerScript : MonoBehaviour {
 
             JumpOffRope();
         }
+
     }
 
     private void HandleVMovement(float vertical)
