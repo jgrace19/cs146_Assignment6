@@ -52,14 +52,15 @@ public class Pickup : MonoBehaviour
                 carrying = false;
             }
             if (timeLeft < 0) {
-                ranOutOfTime();
+                respawn();
             }
         }
     }
 
-    void ranOutOfTime() {
+    void respawn() {
         timeLeft = 10.0f;
         item.transform.position = originalPosition;
+        item.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     void pauseTime() {
@@ -99,13 +100,13 @@ public class Pickup : MonoBehaviour
         foreach (GameObject ghost in ghosts)
         {
             GhostScript script = ghost.GetComponent<GhostScript>();
-            script.StartMoving();
+            if (script != null) script.StartMoving();
         }
         //special hacky fix for up-down ghosts :/
         GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("upDownGhost");
         foreach(GameObject ghost in upDownGhosts){
             upDownGhost script = ghost.GetComponent<upDownGhost>();
-            script.upDownGhostsMoving = true;
+            if (script != null) script.upDownGhostsMoving = true;
         }
 
     }
@@ -115,14 +116,14 @@ public class Pickup : MonoBehaviour
         foreach (GameObject ghost in ghosts)
         {
             GhostScript script = ghost.GetComponent<GhostScript>();
-            script.StopMoving();
+            if (script != null) script.StopMoving();
         }
         //special hacky fix for up-down ghosts :/
         GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("upDownGhost");
         foreach (GameObject ghost in upDownGhosts)
         {
             upDownGhost script = ghost.GetComponent<upDownGhost>();
-            script.upDownGhostsMoving = false;
+            if (script != null) script.upDownGhostsMoving = false;
         }
 
     }
@@ -155,6 +156,7 @@ public class Pickup : MonoBehaviour
         float xForce = guide.GetComponent<PlayerScript>().IsFacingRight() ? 300 : -300;
         item.GetComponent<Rigidbody2D>().AddForce(new Vector2(xForce, 300f));
         thrown = true;
+        item.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

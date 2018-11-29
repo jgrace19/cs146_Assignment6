@@ -153,6 +153,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void Land()
     {
+        Debug.Log("landed");
         isJumping = false;
         isClimbing = false;
         isGrounded = true;
