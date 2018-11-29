@@ -16,7 +16,7 @@ public class MovingPlatformScript : MonoBehaviour {
     private int direction;
     public Transform platform;
 
-    private bool platformMoving;
+    public bool platformMoving;
 
     // Use this for initialization
     void Start () {
