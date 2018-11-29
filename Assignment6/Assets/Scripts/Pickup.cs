@@ -66,7 +66,7 @@ public class Pickup : MonoBehaviour
         source.volume = 1;
         cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
         GameObject[] platforms;
-        platforms = GameObject.FindGameObjectsWithTag("MovingPlatforms");
+        platforms = GameObject.FindGameObjectsWithTag("movingPlatform");
         foreach (GameObject platform in platforms) {
             platform.GetComponent<MovingPlatformScript>().setPlatformMoving(false);
         }
@@ -77,7 +77,7 @@ public class Pickup : MonoBehaviour
         source.volume = 0;
         cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = false;
         GameObject[] platforms;
-        platforms = GameObject.FindGameObjectsWithTag("MovingPlatforms");
+        platforms = GameObject.FindGameObjectsWithTag("movingPlatform");
         foreach (GameObject platform in platforms)
         {
             platform.GetComponent<MovingPlatformScript>().setPlatformMoving(true);
@@ -102,7 +102,7 @@ public class Pickup : MonoBehaviour
             script.StartMoving();
         }
         //special hacky fix for up-down ghosts :/
-        GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("upDownGhost");
         foreach(GameObject ghost in upDownGhosts){
             upDownGhost script = ghost.GetComponent<upDownGhost>();
             script.upDownGhostsMoving = true;
@@ -118,7 +118,7 @@ public class Pickup : MonoBehaviour
             script.StopMoving();
         }
         //special hacky fix for up-down ghosts :/
-        GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("upDownGhost");
         foreach (GameObject ghost in upDownGhosts)
         {
             upDownGhost script = ghost.GetComponent<upDownGhost>();
