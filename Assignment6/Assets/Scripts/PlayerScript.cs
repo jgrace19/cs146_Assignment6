@@ -166,7 +166,7 @@ public class PlayerScript : MonoBehaviour {
         {
             Land();
         }
-        if (collision.collider.tag == "Ghost" || collision.collider.tag == "ElevatorGhost")
+        if (collision.collider.tag == "Ghost" || collision.collider.tag == "ElevatorGhost" || collision.collider.tag == "upDownGhost" )
         {
             myAnimator.SetTrigger("Dead");
             Destroy(clock);

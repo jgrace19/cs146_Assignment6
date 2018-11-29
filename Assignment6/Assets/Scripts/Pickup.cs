@@ -101,6 +101,13 @@ public class Pickup : MonoBehaviour
             GhostScript script = ghost.GetComponent<GhostScript>();
             script.StartMoving();
         }
+        //special hacky fix for up-down ghosts :/
+        GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        foreach(GameObject ghost in upDownGhosts){
+            upDownGhost script = ghost.GetComponent<upDownGhost>();
+            script.upDownGhostsMoving = true;
+        }
+
     }
 
     void disableGhosts()
@@ -109,6 +116,13 @@ public class Pickup : MonoBehaviour
         {
             GhostScript script = ghost.GetComponent<GhostScript>();
             script.StopMoving();
+        }
+        //special hacky fix for up-down ghosts :/
+        GameObject[] upDownGhosts = GameObject.FindGameObjectsWithTag("ElevatorGhost");
+        foreach (GameObject ghost in upDownGhosts)
+        {
+            upDownGhost script = ghost.GetComponent<upDownGhost>();
+            script.upDownGhostsMoving = false;
         }
 
     }
