@@ -65,7 +65,6 @@ public class PlayerScript : MonoBehaviour {
     private void HandleHMovement(float horizontal)
     {
         Debug.Log(onMovingPlatform);
-
         if (girlRb.position.y < -30)
         {
             FindObjectOfType<GameManager>().EndGame();
