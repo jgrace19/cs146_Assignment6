@@ -66,8 +66,6 @@ public class PlayerScript : MonoBehaviour {
 
     public void HandleHMovement(float horizontal)
     {
-        Debug.Log(onMovingPlatform);
-
         if (isFalling == true)
         {
             myAnimator.SetBool("isFalling", true);
@@ -84,8 +82,8 @@ public class PlayerScript : MonoBehaviour {
         {
             myAnimator.SetBool("isGrounded", false);
         }
-
-            if (girlRb.position.y < -30)
+  
+        if (girlRb.position.y < -30)
         {
             FindObjectOfType<GameManager>().EndGame();
         }
