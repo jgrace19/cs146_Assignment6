@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
-    public bool isLockedforAnimations = false;
+    public bool isLockedforAnimations;
     public Rigidbody2D girlRb;
     public GameObject clock;
     [SerializeField]
@@ -25,7 +25,8 @@ public class PlayerScript : MonoBehaviour {
     private Collider2D movingPlatform;
 
     // Use this for initialization
-    void Start () {
+    public void Start () {
+      //isLockedforAnimations = false;//leave unset for other scripts
         facingRight = true;
         isJumping = false;
         isGrounded = true;
@@ -42,9 +43,10 @@ public class PlayerScript : MonoBehaviour {
     }
 
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
-        if (!isLockedforAnimations)
+        Debug.Log(isLockedforAnimations);
+        if (isLockedforAnimations==false)
         {
 
             if (isGrounded)
@@ -62,9 +64,25 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    private void HandleHMovement(float horizontal)
+    public void HandleHMovement(float horizontal)
     {
-        Debug.Log(onMovingPlatform);
+        if (isFalling == true)
+        {
+            myAnimator.SetBool("isFalling", true);
+        } else
+        {
+            myAnimator.SetBool("isFalling", false);
+        }
+
+        if (isGrounded == true)
+        {
+            myAnimator.SetBool("isGrounded", true);
+        }
+        else
+        {
+            myAnimator.SetBool("isGrounded", false);
+        }
+  
         if (girlRb.position.y < -30)
         {
             FindObjectOfType<GameManager>().EndGame();
@@ -150,13 +168,13 @@ public class PlayerScript : MonoBehaviour {
 
     private void Fall()
     {
-        myAnimator.SetBool  ("isFalling",true);
         isFalling = true;
+        isGrounded = false;
     }
 
     private void Land()
     {
-        Debug.Log("landed");
+        Debug.Log("isgrounded: "+isGrounded);
         isJumping = false;
         isClimbing = false;
         isGrounded = true;
