@@ -99,10 +99,14 @@ public class PlayerScript : MonoBehaviour {
         if (onMovingPlatform)
         {
             MovingPlatformScript movingPlatformScript = movingPlatform.GetComponent<MovingPlatformScript>();
-            int direction = movingPlatformScript.getDirection();
+            if(movingPlatformScript.platformMoving)
+            {
+                int direction = movingPlatformScript.getDirection();
 
-            Vector3 girlMovingPlatformPos = new Vector3(girlRb.transform.position.x + (platformSpeed * direction), girlRb.transform.position.y);
-            girlRb.position = girlMovingPlatformPos;
+                Vector3 girlMovingPlatformPos = new Vector3(girlRb.transform.position.x + (platformSpeed * direction), girlRb.transform.position.y);
+                girlRb.position = girlMovingPlatformPos;
+            }
+
         }
     }
 
