@@ -8,5 +8,8 @@ public class EndTrigger : MonoBehaviour {
     {
         Debug.Log("Triggered");
         FindObjectOfType<GameManager>().CompleteLevel();
+        GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        MainCamera.active = false;
+
     }
 }

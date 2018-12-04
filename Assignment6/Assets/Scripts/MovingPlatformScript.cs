@@ -8,10 +8,10 @@ public class MovingPlatformScript : MonoBehaviour {
     private float moveSpeed = .1f;
 
     [SerializeField] 
-    private float XMax;
+    public float XMax;
 
     [SerializeField]
-    private float XMin;
+    public float XMin;
 
     private int direction;
     public Transform platform;
@@ -37,10 +37,12 @@ public class MovingPlatformScript : MonoBehaviour {
         if (platform.position.x < XMin && direction == LEFT)
         {
             direction = RIGHT;
+            Debug.Log("switch direction");
         }
         if (platform.position.x > XMax && direction == RIGHT)
         {
             direction = LEFT;
+            Debug.Log("switch direction");
         }
         platform.position = new Vector2(platform.position.x + moveSpeed * direction, platform.position.y);
     }

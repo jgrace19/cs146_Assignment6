@@ -108,6 +108,14 @@ public class Pickup : MonoBehaviour
             upDownGhost script = ghost.GetComponent<upDownGhost>();
             if (script != null) script.upDownGhostsMoving = true;
         }
+        //special hacky fix for square ghosts :/
+        GameObject[] squareGhosts = GameObject.FindGameObjectsWithTag("squareGhost");
+        foreach (GameObject ghost in squareGhosts)
+        {
+            squareGhost script = ghost.GetComponent<squareGhost>();
+            if (script != null) script.squareGhostMoving = true;
+        }
+
 
     }
 
@@ -125,7 +133,13 @@ public class Pickup : MonoBehaviour
             upDownGhost script = ghost.GetComponent<upDownGhost>();
             if (script != null) script.upDownGhostsMoving = false;
         }
-
+        //special hacky fix for up-down ghosts :/
+        GameObject[] squareGhosts = GameObject.FindGameObjectsWithTag("squareGhost");
+        foreach (GameObject ghost in squareGhosts)
+        {
+            squareGhost script = ghost.GetComponent<squareGhost>();
+            if (script != null) script.squareGhostMoving = false;
+        }
     }
 
     void getAllGhosts()
