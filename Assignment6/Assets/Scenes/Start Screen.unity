@@ -345,7 +345,7 @@ RectTransform:
   m_GameObject: {fileID: 271646513}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2583, y: 1.2583, z: 1.2583}
   m_Children:
   - {fileID: 622952483}
   m_Father: {fileID: 1286168605}
@@ -353,7 +353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: -103}
+  m_AnchoredPosition: {x: 23, y: -138}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &271646515
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 493645715}
   - component: {fileID: 493645714}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46, y: 104}
+  m_AnchoredPosition: {x: -144, y: 140}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493645714
@@ -509,11 +509,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6e64e21286536984d8c02657c336c60b, type: 3}
-    m_FontSize: 100
+    m_FontSize: 200
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 100
+    m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 752178228}
   - component: {fileID: 752178227}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RCADIA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,8 +635,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.599998, y: 91.8}
-  m_SizeDelta: {x: 253.3, y: 54.3}
+  m_AnchoredPosition: {x: 62.999996, y: 152}
+  m_SizeDelta: {x: 409.9, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752178227
 MonoBehaviour:
@@ -659,12 +659,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6e64e21286536984d8c02657c336c60b, type: 3}
-    m_FontSize: 80
+    m_FontSize: 160
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
-    m_MaxSize: 80
-    m_Alignment: 0
+    m_MinSize: 1
+    m_MaxSize: 160
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 1286168603}
   - component: {fileID: 1286168602}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas - Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 1985000031}
   - component: {fileID: 1985000030}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Horror Platformer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,7 +1005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: 7}
+  m_AnchoredPosition: {x: 20, y: -54}
   m_SizeDelta: {x: 490.5, y: 155.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1985000030

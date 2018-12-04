@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour {
     private float platformSpeed = .1f;
     private bool onMovingPlatform = false;
     private Collider2D movingPlatform;
+    private PlayerSoundEffect playersoundeffect;
 
     // Use this for initialization
     public void Start () {
@@ -33,7 +34,8 @@ public class PlayerScript : MonoBehaviour {
         isClimbing = false;
         isFalling = false;
         myAnimator = GetComponent<Animator>();
-        	}
+        playersoundeffect = GameObject.Find("Player").GetComponent<PlayerSoundEffect>();
+    }
 	
 	// Update is called once per frame
 
@@ -42,10 +44,21 @@ public class PlayerScript : MonoBehaviour {
         return this.facingRight;
     }
 
+    
+
 
     public void FixedUpdate()
     {
-        Debug.Log(isLockedforAnimations);
+
+        if (isLockedforAnimations == true)
+        {
+            playersoundeffect.enabled=false;
+        } else
+        {
+            playersoundeffect.enabled = true;
+        }
+
+            Debug.Log(isLockedforAnimations);
        if (isLockedforAnimations==false)
        {
 
