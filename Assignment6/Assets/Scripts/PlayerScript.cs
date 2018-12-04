@@ -46,8 +46,8 @@ public class PlayerScript : MonoBehaviour {
     public void FixedUpdate()
     {
         Debug.Log(isLockedforAnimations);
-        if (isLockedforAnimations==false)
-        {
+       if (isLockedforAnimations==false)
+       {
 
             if (isGrounded)
             {
@@ -138,6 +138,8 @@ public class PlayerScript : MonoBehaviour {
             transform.localScale = scale;
         }
     }
+
+   
 
     private void Jump()
     {

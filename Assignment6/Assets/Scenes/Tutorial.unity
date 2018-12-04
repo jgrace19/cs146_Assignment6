@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1a197d36c9845bbbab92e0ddfd078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1863912228}
   offset: {x: 0, y: 9, z: -28}
 --- !u!81 &1863017848
 AudioListener:
@@ -1714,6 +1714,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1863912228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4129811296670848, guid: 4a3e2c3bf13e9d944ad3c79f12b3c5b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 830179594}
 --- !u!1001 &1912584209
 Prefab:
   m_ObjectHideFlags: 0
