@@ -10,8 +10,8 @@ public class PlayerScript : MonoBehaviour {
     private float movementSpeed = 10;
     private bool facingRight;
     public Animator myAnimator;
-    private bool isJumping;
-    private bool isClimbing;
+    public bool isJumping;
+    public bool isClimbing;
     public bool isGrounded;
     private bool isFalling;
     public float fallMultiplier = 1.05f;
@@ -174,7 +174,6 @@ public class PlayerScript : MonoBehaviour {
 
     private void Land()
     {
-        Debug.Log("isgrounded: "+isGrounded);
         isJumping = false;
         isClimbing = false;
         isGrounded = true;
