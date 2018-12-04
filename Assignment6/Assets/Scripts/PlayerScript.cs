@@ -116,6 +116,7 @@ public class PlayerScript : MonoBehaviour {
 
         if (onMovingPlatform)
         {
+            Land();
             MovingPlatformScript movingPlatformScript = movingPlatform.GetComponent<MovingPlatformScript>();
             if(movingPlatformScript.platformMoving)
             {
