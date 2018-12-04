@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -98,7 +98,8 @@ public class PlayerScript : MonoBehaviour {
   
         if (girlRb.position.y < -30)
         {
-            FindObjectOfType<GameManager>().EndGame();
+            GameManager gameManagerScript = FindObjectOfType<GameManager>();
+            gameManagerScript.EndGame();
         }
 
         if (!isClimbing)
@@ -203,7 +204,7 @@ public class PlayerScript : MonoBehaviour {
         {
             Land();
         }
-        if (collision.collider.tag == "Ghost" || collision.collider.tag == "ElevatorGhost" || collision.collider.tag == "upDownGhost" )
+        if (collision.collider.tag == "Ghost" || collision.collider.tag == "ElevatorGhost" || collision.collider.tag == "upDownGhost" || collision.collider.tag == "squareGhost")
         {
             myAnimator.SetTrigger("Dead");
             Destroy(clock);
