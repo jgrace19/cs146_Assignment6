@@ -116,6 +116,7 @@ public class PlayerScript : MonoBehaviour {
 
         if (onMovingPlatform)
         {
+            Land();
             MovingPlatformScript movingPlatformScript = movingPlatform.GetComponent<MovingPlatformScript>();
             if(movingPlatformScript.platformMoving)
             {
@@ -174,7 +175,6 @@ public class PlayerScript : MonoBehaviour {
 
     private void Land()
     {
-        Debug.Log("isgrounded: "+isGrounded);
         isJumping = false;
         isClimbing = false;
         isGrounded = true;
