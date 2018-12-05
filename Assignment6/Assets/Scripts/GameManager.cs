@@ -9,13 +9,15 @@ public class GameManager : MonoBehaviour
     public GameObject horrorImageUI;
     public GameObject horrorImage2;
     private int rInt;
+    public AudioClip horrorClip;
+    public AudioSource horrorSource;
 
     // Use this for initialization
     void Start () {
 
         //Random r = new Random();
         rInt = Random.Range(0,11);
-
+        horrorSource.clip = horrorClip;
     }
 
     // Update is called once per frame
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
             gameHasEnded = true;
             Debug.Log("Game Over");
             Debug.Log(rInt);
+            horrorSource.Play();
+
             if (rInt > 7) {
                 horrorImage2.SetActive(true);
             } else {
