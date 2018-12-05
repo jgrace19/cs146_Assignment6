@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -361,6 +361,29 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114662522565801342, guid: 4fcb01908311b43da93bc3bd6abf0912,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114662522565801342, guid: 4fcb01908311b43da93bc3bd6abf0912,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114662522565801342, guid: 4fcb01908311b43da93bc3bd6abf0912,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114973609595305830, guid: 4fcb01908311b43da93bc3bd6abf0912,
+        type: 2}
+      propertyPath: m_Text
+      value: "\t\t\t\t\t\t\t\t\t\t\t\nSprites: https://www.gameart2d.com/freebies.html\nConcentric
+        Circles Shader: http://www.shaderslab.com/demo-01---concentric-circles.html\nMusic:
+        Stanley Holloway - With Her Head Tacked Underneath Her Arm\nDog Barks: https://www.youtube.com/watch?v=iuy-oOJCOoM\nClock
+        Ticking: https://www.youtube.com/watch?v=ZoH8E9MlB7s\nDeath Sound: http://www.mediafire.com/file/sy69vmgr2ogdbjd/Scary+Jumpscare+Sound+Effect.wav\n\n"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fcb01908311b43da93bc3bd6abf0912, type: 2}
   m_IsPrefabAsset: 0
@@ -476,7 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -484,7 +507,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: eeff72356f59bbd41aa10b30f162034c, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -496,8 +519,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\t\t\t\t\t\t\t\t\t\t\t\tCredits:\n\n\nSprites: https://www.gameart2d.com/freebies.html\nConcentric
-    Circles Shader: http://www.shaderslab.com/demo-01---concentric-circles.html"
+  m_Text: "\t\t\t\t\t\t\t\t\t\t\t\nSprites: https://www.gameart2d.com/freebies.html\nConcentric
+    Circles Shader: http://www.shaderslab.com/demo-01---concentric-circles.html\nMusic:
+    Stanley Holloway - With Her Head Tacked Underneath Her Arm\nDog Barks: https://www.youtube.com/watch?v=iuy-oOJCOoM\nClock
+    Ticking: https://www.youtube.com/watch?v=ZoH8E9MlB7s\nDeath Sound: http://www.mediafire.com/file/sy69vmgr2ogdbjd/Scary+Jumpscare+Sound+Effect.wav\n\n"
 --- !u!222 &2135611250
 CanvasRenderer:
   m_ObjectHideFlags: 0
