@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour {
     public float jumpForce;
     CircleCollider2D landingRopeRung;
     private float CLIMB_SPEED = .2f;
-    private float platformSpeed = .3f;
+    private float platformSpeed = .2f;
     private bool onMovingPlatform = false;
     private Collider2D movingPlatform;
     private PlayerSoundEffect playersoundeffect;

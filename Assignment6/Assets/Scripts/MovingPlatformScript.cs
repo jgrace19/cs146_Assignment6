@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingPlatformScript : MonoBehaviour {
     private int RIGHT = 1;
     private int LEFT = -1;
-    private float moveSpeed = .3f;
+    private float moveSpeed = .2f;
 
     [SerializeField] 
     public float XMax;
