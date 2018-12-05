@@ -3474,6 +3474,16 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockSource
+      value: 
+      objectReference: {fileID: 1909353116}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 80d5bd8d197214938996833df192633f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
   m_IsPrefabAsset: 0
@@ -4665,6 +4675,11 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!82 &387738455 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82504018765765170, guid: 696d7c5d781059b49904bc542c1d64d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1356511717}
 --- !u!4 &387738460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7,
@@ -9715,6 +9730,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e6a7defd4c0b2e448055faccdeeff05, type: 2}
   m_IsPrefabAsset: 0
+--- !u!82 &950142895 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82504018765765170, guid: 696d7c5d781059b49904bc542c1d64d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1682688560}
 --- !u!4 &950142900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7,
@@ -10760,6 +10780,11 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!82 &1081412141 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82504018765765170, guid: 696d7c5d781059b49904bc542c1d64d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1295608722}
 --- !u!1 &1084057336 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 103234, guid: 7e6a7defd4c0b2e448055faccdeeff05,
@@ -12429,6 +12454,16 @@ Prefab:
       propertyPath: m_Mass
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockSource
+      value: 
+      objectReference: {fileID: 1081412141}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 80d5bd8d197214938996833df192633f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
   m_IsPrefabAsset: 0
@@ -13370,6 +13405,16 @@ Prefab:
       propertyPath: m_Mass
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockSource
+      value: 
+      objectReference: {fileID: 387738455}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a8e82b3f5de2400c854945cc10bf0bd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
   m_IsPrefabAsset: 0
@@ -16148,9 +16193,24 @@ Prefab:
       propertyPath: m_Mass
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockSource
+      value: 
+      objectReference: {fileID: 950142895}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 80d5bd8d197214938996833df192633f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
   m_IsPrefabAsset: 0
+--- !u!82 &1714087492 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82504018765765170, guid: 696d7c5d781059b49904bc542c1d64d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 2040625714}
 --- !u!1 &1732801102
 GameObject:
   m_ObjectHideFlags: 0
@@ -17672,6 +17732,11 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!82 &1909353116 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82504018765765170, guid: 696d7c5d781059b49904bc542c1d64d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 271173475}
 --- !u!1 &1931012376
 GameObject:
   m_ObjectHideFlags: 0
@@ -18987,6 +19052,16 @@ Prefab:
       propertyPath: m_Mass
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockSource
+      value: 
+      objectReference: {fileID: 1714087492}
+    - target: {fileID: 114446084202086690, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: clockClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 80d5bd8d197214938996833df192633f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
   m_IsPrefabAsset: 0
