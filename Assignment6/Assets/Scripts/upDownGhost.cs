@@ -23,6 +23,12 @@ public class upDownGhost : MonoBehaviour {
     {
         if(upDownGhostsMoving){
             moveUpAndDown();
+            Flicker();
+        }
+        else
+        {
+            SpriteRenderer ghostRenderer = ghost.GetComponent<SpriteRenderer>();
+            ghostRenderer.enabled = true;
         }
     }
 
@@ -37,6 +43,19 @@ public class upDownGhost : MonoBehaviour {
             direction = DOWN;
         }
         ghost.transform.position = new Vector2(ghost.transform.position.x, ghost.transform.position.y + moveSpeed * direction);
+    }
+
+    void Flicker()
+    {
+        SpriteRenderer ghostRenderer = ghost.GetComponent<SpriteRenderer>();
+        if (UnityEngine.Random.value < 0.80f)
+        {
+            ghostRenderer.enabled = false;
+        }
+        else
+        {
+            ghostRenderer.enabled = true;
+        }
     }
 }
 

@@ -31,6 +31,10 @@ public class squareGhost : MonoBehaviour {
 	void FixedUpdate () {
         if(squareGhostMoving){
             move();
+            Flicker();
+        }else{
+            SpriteRenderer ghostRenderer = ghost.GetComponent<SpriteRenderer>();
+            ghostRenderer.enabled = true;
         }
 	}
 
@@ -63,6 +67,19 @@ public class squareGhost : MonoBehaviour {
                 movingSideways = true;
             }
             ghost.transform.position = new Vector2(ghost.transform.position.x, ghost.transform.position.y + moveSpeed * yDirection);
+        }
+    }
+
+    void Flicker()
+    {
+        SpriteRenderer ghostRenderer = ghost.GetComponent<SpriteRenderer>();
+        if (UnityEngine.Random.value < 0.80f)
+        {
+            ghostRenderer.enabled = false;
+        }
+        else
+        {
+            ghostRenderer.enabled = true;
         }
     }
 }
