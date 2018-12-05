@@ -1763,7 +1763,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 293977555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6, y: 2.8, z: 4.6}
+  m_LocalPosition: {x: 80, y: 2.6, z: 4.6}
   m_LocalScale: {x: 0.031183902, y: 0.031183902, z: 0.031183902}
   m_Children: []
   m_Father: {fileID: 1529702208}
@@ -2204,8 +2204,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 56}
-  m_SizeDelta: {x: 306.5, y: 50.2}
+  m_AnchoredPosition: {x: 5, y: -115}
+  m_SizeDelta: {x: 306.5, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402810528
 MonoBehaviour:
@@ -2239,7 +2239,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome to Arcadia
+  m_Text: 'Welcome to Arcadia
+
+
+    K to pickup/drop'
 --- !u!222 &402810529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3209,7 +3212,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 546153784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -121.832375, y: -98.07727, z: 4.6}
+  m_LocalPosition: {x: -44.9, y: -98.07727, z: 4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1869157439}
@@ -3783,7 +3786,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 662081613}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9, y: -1.09, z: 4.604}
+  m_LocalPosition: {x: 78.95, y: -1.09, z: 4.604}
   m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
   m_Children: []
   m_Father: {fileID: 1529702208}
@@ -4904,7 +4907,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 791732988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.5, y: -1.09, z: 4.6045694}
+  m_LocalPosition: {x: 42, y: -1.09, z: 4.6045694}
   m_LocalScale: {x: 1.9278613, y: 1.9278613, z: 1.9278613}
   m_Children: []
   m_Father: {fileID: 1529702208}
@@ -6568,7 +6571,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132848294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 56.8, y: -1.0899999, z: 4.6045694}
+  m_LocalPosition: {x: 13.3, y: -1.0899999, z: 4.6045694}
   m_LocalScale: {x: 1.9278699, y: 1.9278699, z: 1.9278699}
   m_Children: []
   m_Father: {fileID: 1529702208}
