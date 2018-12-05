@@ -12,6 +12,7 @@ TagManager:
   - movingPlatform
   - upDownGhost
   - squareGhost
+  - upDownDoor
   layers:
   - Default
   - TransparentFX
