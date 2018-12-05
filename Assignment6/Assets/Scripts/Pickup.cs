@@ -75,8 +75,10 @@ public class Pickup : MonoBehaviour
         source.volume = 1;
         clockSource.Play();
         cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
-        pillar = GameObject.Find("Pillar").GetComponent<Rigidbody2D>();
-        Destroy(pillar);
+        if(GameObject.Find("Pillar") != null){
+            pillar = GameObject.Find("Pillar").GetComponent<Rigidbody2D>();
+            Destroy(pillar);
+        }
         //pillar.constraints = RigidbodyConstraints2D.FreezePosition;
         //pillar.constraints = RigidbodyConstraints2D.FreezeRotation;
         //pillar.isKinematic = true;
