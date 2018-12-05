@@ -130,6 +130,12 @@ public class Pickup : MonoBehaviour
             if (script != null) script.squareGhostMoving = true;
         }
 
+        GameObject upDownDoor = GameObject.FindGameObjectWithTag("upDownDoor");
+        try {
+            upDownDoor doorScript = upDownDoor.GetComponent<upDownDoor>();
+            if (doorScript != null) doorScript.upDownDoorMoving = true;
+        } catch {
+        }
 
     }
 
@@ -153,6 +159,12 @@ public class Pickup : MonoBehaviour
         {
             squareGhost script = ghost.GetComponent<squareGhost>();
             if (script != null) script.squareGhostMoving = false;
+        }
+
+        GameObject upDownDoor = GameObject.FindGameObjectWithTag("upDownDoor");
+        if (upDownDoor != null) {
+            upDownDoor doorScript = upDownDoor.GetComponent<upDownDoor>();
+            if (doorScript != null) doorScript.upDownDoorMoving = false;
         }
     }
 

@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour {
     public float jumpForce;
     CircleCollider2D landingRopeRung;
     private float CLIMB_SPEED = .2f;
-    private float platformSpeed = .1f;
+    private float platformSpeed = .2f;
     private bool onMovingPlatform = false;
     private Collider2D movingPlatform;
     private PlayerSoundEffect playersoundeffect;
@@ -224,6 +224,7 @@ public class PlayerScript : MonoBehaviour {
     {
         if (collision.GetComponent<Collider2D>().tag == "Rope")
         {
+            Debug.Log("collide");
             if(!isClimbing && !isFalling){
                 girlRb.gravityScale = 0;
                 landingRopeRung = collision.GetComponent<CircleCollider2D>();
