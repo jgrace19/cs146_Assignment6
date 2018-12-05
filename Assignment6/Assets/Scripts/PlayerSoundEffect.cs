@@ -24,7 +24,7 @@ public class PlayerSoundEffect : MonoBehaviour
         playerScript = Player.GetComponent<PlayerScript>();
         sources = GetComponents<AudioSource>();
         walkSource = sources[0];
-        jumpSource = sources[1];
+        //jumpSource = sources[1];
         //isClimbing = GetComponent<PlayerScript>().getIsClimbing();
     }
 
