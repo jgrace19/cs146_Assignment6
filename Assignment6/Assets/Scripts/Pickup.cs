@@ -20,6 +20,8 @@ public class Pickup : MonoBehaviour
     public GameObject[] ghosts;
     float timeLeft;
     Vector3 originalPosition;
+    Rigidbody2D pillar;
+   // Vector2 stopforce = (0, 0);
 
     // Use this for initialization
     void Start()
@@ -32,6 +34,7 @@ public class Pickup : MonoBehaviour
         getAllGhosts(); // initialize ghosts array to both "elevator ghosts" and "regular ghosts"
         enableElevatorGhosts();
         timeLeft = 10.0f;
+        
     }
     // Update is called once per frame
     void Update()
@@ -72,6 +75,11 @@ public class Pickup : MonoBehaviour
         source.volume = 1;
         clockSource.Play();
         cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
+        pillar = GameObject.Find("Pillar").GetComponent<Rigidbody2D>();
+        Destroy(pillar);
+        //pillar.constraints = RigidbodyConstraints2D.FreezePosition;
+        //pillar.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //pillar.isKinematic = true;
         GameObject[] platforms;
         platforms = GameObject.FindGameObjectsWithTag("movingPlatform");
         foreach (GameObject platform in platforms) {

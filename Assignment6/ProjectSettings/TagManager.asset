@@ -12,6 +12,8 @@ TagManager:
   - movingPlatform
   - upDownGhost
   - squareGhost
+  - Pebble
+  - Pillar
   layers:
   - Default
   - TransparentFX
