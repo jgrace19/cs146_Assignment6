@@ -123,9 +123,11 @@ public class Pickup : MonoBehaviour
         }
 
         GameObject upDownDoor = GameObject.FindGameObjectWithTag("upDownDoor");
-        upDownDoor doorScript = upDownDoor.GetComponent<upDownDoor>();
-        if (doorScript != null) doorScript.upDownDoorMoving = true;
-
+        try {
+            upDownDoor doorScript = upDownDoor.GetComponent<upDownDoor>();
+            if (doorScript != null) doorScript.upDownDoorMoving = true;
+        } catch {
+        }
 
     }
 
@@ -152,9 +154,10 @@ public class Pickup : MonoBehaviour
         }
 
         GameObject upDownDoor = GameObject.FindGameObjectWithTag("upDownDoor");
-        upDownDoor doorScript = upDownDoor.GetComponent<upDownDoor>();
-        if (doorScript != null) doorScript.upDownDoorMoving = false;
-
+        if (upDownDoor != null) {
+            upDownDoor doorScript = upDownDoor.GetComponent<upDownDoor>();
+            if (doorScript != null) doorScript.upDownDoorMoving = false;
+        }
     }
 
     void getAllGhosts()

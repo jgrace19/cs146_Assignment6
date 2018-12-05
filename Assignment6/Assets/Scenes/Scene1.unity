@@ -8417,15 +8417,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_LocalRotation.w
