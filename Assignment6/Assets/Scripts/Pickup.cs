@@ -4,6 +4,10 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public AudioSource source;
+
+    public AudioSource clockSource;
+    public AudioClip clockClip;
+
     private bool playedmusiconce = false;
     public GameObject item;
     public GameObject cameralens;
@@ -20,6 +24,7 @@ public class Pickup : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        clockSource.clip = clockClip;
         originalPosition = item.transform.position;
         source = GetComponent<AudioSource>();
         cameralens = GameObject.Find("Main Camera");
@@ -65,6 +70,7 @@ public class Pickup : MonoBehaviour
 
     void pauseTime() {
         source.volume = 1;
+        clockSource.Play();
         cameralens.GetComponent<REDDOT_OldMovie_PostProcess>().enabled = true;
         GameObject[] platforms;
         platforms = GameObject.FindGameObjectsWithTag("movingPlatform");
@@ -176,7 +182,7 @@ public class Pickup : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform == guide) {
-            Physics2D.IgnoreCollision(guide.GetComponent<Collider2D>(), item.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(guide.GetComponent<PolygonCollider2D>(), item.GetComponent<Collider2D>());
         }
     }
 
