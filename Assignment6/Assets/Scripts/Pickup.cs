@@ -176,7 +176,7 @@ public class Pickup : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform == guide) {
-            Physics2D.IgnoreCollision(guide.GetComponent<Collider2D>(), item.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(guide.GetComponent<PolygonCollider2D>(), item.GetComponent<Collider2D>());
         }
     }
 

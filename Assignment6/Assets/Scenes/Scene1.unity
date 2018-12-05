@@ -1548,7 +1548,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4857588525362054, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1592,6 +1592,16 @@ Prefab:
     - target: {fileID: 1629519443136114, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82504018765765170, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61494480039696446, guid: 696d7c5d781059b49904bc542c1d64d7,
+        type: 2}
+      propertyPath: m_AutoTiling
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696d7c5d781059b49904bc542c1d64d7, type: 2}
@@ -9133,7 +9143,13 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 82775895909067134, guid: 4a3e2c3bf13e9d944ad3c79f12b3c5b3,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 60559305362200100, guid: 4a3e2c3bf13e9d944ad3c79f12b3c5b3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4a3e2c3bf13e9d944ad3c79f12b3c5b3, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1523984423 stripped

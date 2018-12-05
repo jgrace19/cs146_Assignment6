@@ -58,7 +58,6 @@ public class PlayerScript : MonoBehaviour {
             playersoundeffect.enabled = true;
         }
 
-            Debug.Log(isLockedforAnimations);
        if (isLockedforAnimations==false)
        {
 
