@@ -6,20 +6,17 @@ using UnityEngine.SceneManagement;
 public class EndTrigger : MonoBehaviour {
 
     public AudioSource[] sources;
+    Animator myAnimator;
 
-    private void Start()
+    void Start()
     {
-        sources = GetComponents<AudioSource>();
+        myAnimator = GameObject.Find("Panel - S1End").GetComponent<Animator>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        sources[0].Play();
-        sources[1].Play();
-        FindObjectOfType<GameManager>().CompleteLevel();
-        GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        //MainCamera.active = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+        Debug.Log("triggered");
+        myAnimator.Play("S1End");
     }
 }
