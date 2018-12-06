@@ -31,7 +31,12 @@ public class ElevatorDoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        myAnimator.SetTrigger("DoorClose");
+        float startTime = Time.time;
+        Vector3 newPos = new Vector3(AnimatorObject.transform.position.x, -39.1f, AnimatorObject.transform.position.z);
+        float distCovered = (Time.time - startTime);
+        float journeyLength = Vector3.Distance(AnimatorObject.transform.position, newPos);
+        AnimatorObject.transform.position = Vector3.Lerp(AnimatorObject.transform.position, newPos, 1);
+       // myAnimator.SetTrigger("DoorClose");
         source.Play();
     }
 }

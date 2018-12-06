@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndTrigger : MonoBehaviour {
 
@@ -17,6 +18,8 @@ public class EndTrigger : MonoBehaviour {
         sources[1].Play();
         FindObjectOfType<GameManager>().CompleteLevel();
         GameObject MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        MainCamera.active = false;
+        //MainCamera.active = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 }
