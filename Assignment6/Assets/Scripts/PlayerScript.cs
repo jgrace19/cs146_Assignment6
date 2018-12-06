@@ -194,6 +194,7 @@ public class PlayerScript : MonoBehaviour {
         isClimbing = false;
         isGrounded = true;
         isFalling = false;
+        myAnimator.SetBool("Climb", false);
         myAnimator.SetTrigger("Land");
     }
 
